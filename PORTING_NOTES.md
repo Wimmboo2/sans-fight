@@ -77,3 +77,9 @@ Sprites are drawn at their layout scale: Sans parts ×2, touch buttons ×2, Stri
   empty string, which converts to 0 numerically, so text parameters never show a stray "0".
 - **Beam draw order.** "Move to object, Where = 0" is read as *behind*. That puts the red damage strip of a Gaster
   Blaster beam under the white beam, where it can't be seen.
+
+## Bug fixes
+
+The fixes (soul hitbox, platform acceleration, sans dialog, and the known issues from the original's tracker), with
+how each was checked, are listed in [README.md](README.md#bug-fixes). Each one can be switched off with
+`BTS.C.FIXES` in `js/constants.js` to get the original behavior back.

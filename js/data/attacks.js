@@ -1,8 +1,9 @@
 /*
  * attacks.js - the 24 attack scripts of the original project (Files/*.csv), embedded as text so the game
  * also works when index.html is opened straight from disk (browsers block fetch() on file://).
- * The text is the original CSV verbatim (line endings normalised to \n). The one intentional change is
- * marked FIX below: the platform in sans_platforms4/4hard now accelerates (7th Platform argument).
+ * The text is the original CSV verbatim (line endings normalised to \n), with one intentional change:
+ * FIX - in sans_platforms4 and sans_platforms4hard the Platform line has a 7th argument, 84, so the platform
+ * accelerates from 0 to its full speed at 84 px/s^2 instead of starting at full speed (see README).
  * The order of ATTACK_NAMES is the order of the "Single attack" menu.
  */
 (function (BTS) {
@@ -917,7 +918,7 @@ $Wait2,SET,LastDir,$Direction,,,,,,
 0,HeartTeleport,320,376,,,,,
 0,HeartMode,1,,,,,,
 0,TLPause,,,,,,,
-0,Platform,151,336,41,0,90,1,
+0,Platform,151,336,41,0,90,1,84
 0,HeartTeleport,175,327,,,,,
 0,BoneVRepeat,528,366,40,0,60,60,15
 0,BoneVRepeat,283,267,40,3,90,11,85
@@ -929,7 +930,7 @@ $Wait2,SET,LastDir,$Direction,,,,,,
 0,HeartTeleport,320,376,,,,,
 0,HeartMode,1,,,,,,
 0,TLPause,,,,,,,
-0,Platform,151,336,31,0,90,1,
+0,Platform,151,336,31,0,90,1,84
 0,HeartTeleport,175,327,,,,,
 0,BoneVRepeat,528,366,40,0,60,60,15
 0,BoneVRepeat,283,268,40,3,90,12,65

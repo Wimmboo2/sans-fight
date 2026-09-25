@@ -46,6 +46,9 @@
 
     closePaste: function (ok) {
       overlay.hidden = true;
+      textarea.blur();
+      var canvas = document.getElementById('game');
+      if (canvas) canvas.focus();
       BTS.input.captureKeys = true;
       BTS.input.resetHeld();
       var t = textarea.value;

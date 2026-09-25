@@ -83,6 +83,8 @@
       if (s.simulatorMode === MODE.SINGLE) {
         BTS.text.create('BattleFont', 'Background', 0, 32, { w: 640, h: 32, name: 'QuitMessage', text: "PRESS 'X' TO QUIT" });
       }
+      battle.practice.attack = 0;           // (the original resets this when the layout ends)
+      battle.practice.failed = 0;
       if (s.simulatorMode === MODE.PRACTICE) w.sans.legs.nextAttack = battle.practice.attack;
       BTS.touch.onBattleStart();
       if (!opts.sandbox) BTS.fn.call('StartAttack');

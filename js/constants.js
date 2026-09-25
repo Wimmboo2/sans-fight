@@ -32,10 +32,12 @@
     SLAM_SOUND_MIN_SPEED: 330,
     HEART_STEP_PX: 1,             // Custom Movement "pixels per step"
 
-    // Soul hitbox used for DAMAGE (walls still use the full sprite).
-    // mode 'box'  : centred axis-aligned box of w x h (default, see README "Soul hitbox").
-    // mode 'point': the original's effective hitbox (the heart's centre point only).
-    SOUL_HITBOX: { mode: 'box', w: 8, h: 8 },
+    // Soul hitbox used for DAMAGE (walls and platforms still use the full 16x16 sprite).
+    // mode 'box'  : centred axis-aligned box of w x h. Default 6x6, see README "Bug fixes > Soul hitbox":
+    //               the largest size where the tight attacks can still be cleared the intended way
+    //               (at 8x8 no stand-still-and-hop way through sans_bluebone was found).
+    // mode 'point': the original's effective hitbox (only the heart's centre point).
+    SOUL_HITBOX: { mode: 'box', w: 6, h: 6 },
 
     // --- Damage / karma (PlayerDamage group) ---
     DAMAGE_COOLDOWN: 0.033,       // at most one damage tick per ~1/30 s
@@ -69,7 +71,6 @@
     BLASTER_APPROACH: 10,         // lerp factor per second while entering
     BLASTER_FIRE_DELAY: 0.1,
     BLASTER_LEAVE_ACCEL: 30,      // added to LeaveSpeed every TICK (per-tick in the original)
-    PLATFORM_ACCEL_DEFAULT: 0,    // 0 = start at full speed (original behaviour)
 
     // --- Text ---
     TEXT_CHAR_TIME: 1 / 30,
@@ -99,12 +100,11 @@
     // --- Fixes for known bugs of the original. Set any to false to get the original behaviour. ---
     FIXES: {
       platformAcceleration: true, // readme: platforms4/4hard platform should accelerate from 0
-      teleportResetsVelocity: true, // #168: HeartTeleport kept the old velocity, so chained sub-attacks start mid-jump
+      teleportResetsVelocity: true, // #168: HeartTeleport kept the soul's speed, so a jump held through a multi3 switch carried over
       jumpSetsVelocity: true,     // #159: jump ADDED -180 to the current fall speed, so late jumps came out short
       slamOwnAxis: true,          // #156: side-wall contact swallows a vertical slam (no sound, no damage)
       silentMenuBack: true,       // #157: backing out of a menu plays MenuSelect
       verticalPlatforms: true,    // #135: platform direction 1/3 moves sideways
-      platformsAnyGravity: true,  // #21: platforms only carry the soul when gravity is up/down
       resizeUnpin: true,          // #93: shrinking box can leave the soul stuck against a border
       speechNewlines: true,       // #149: "\n" in SansText starts a new line
       resizeAutoAlias: true       // docs name CombatZoneResizeAuto; code only had CombatZoneResizeInstant

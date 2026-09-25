@@ -220,12 +220,8 @@
       var ps;
       if (sideways) {
         m.dy = 0;
-        if (C.FIXES.platformsAnyGravity) {
-          ridePlatform(h, X, Y);
-        } else {
-          ps = platformsAt(X * 0.2, Y * 0.2);
-          if (ps.length) { m.dx = ps[0].mover.dx; m.dy = ps[0].mover.dy; }
-        }
+        ps = platformsAt(X * 0.2, Y * 0.2);
+        if (ps.length) { m.dx = ps[0].mover.dx; m.dy = ps[0].mover.dy; }
         if (pad.Up !== pad.Down) {
           if (pad.Up) m.dy -= speed;
           if (pad.Down) m.dy += speed;
@@ -241,7 +237,7 @@
     }
   };
 
-  // Stand on / ride a platform under the heart (relative to gravity) and snap to its surface.
+  // Gravity up/down: stand on / ride a platform and snap to its surface.
   function ridePlatform(h, X, Y) {
     var m = h.mover, ps = platformsAt(X * 0.5, Y * 0.5);
     ps.forEach(function (p) {
@@ -250,8 +246,6 @@
       m.dx = p.mover.dx; m.dy = p.mover.dy;
       if (U.angleWithin(h.angle, 90, 0.5)) h.y = pr.t - snap;
       else if (U.angleWithin(h.angle, 270, 0.5)) h.y = pr.b + snap;
-      else if (U.angleWithin(h.angle, 0, 0.5)) h.x = pr.l - snap;
-      else if (U.angleWithin(h.angle, 180, 0.5)) h.x = pr.r + snap;
     });
   }
 

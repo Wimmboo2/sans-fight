@@ -136,7 +136,7 @@
   function loaded(text) {
     if (BTS.state.scene !== 'mainmenu') return;
     S().customAttack = text;
-    backToCustom();
+    fn.call('MenuModeCustom');      // refresh so "Run attack" becomes selectable
     notice('CUSTOM ATTACK LOADED');
   }
   fn.on('MenuCustomSelect', function () {
